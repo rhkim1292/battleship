@@ -1,3 +1,3 @@
-export default function errorFn() {
-    consnole.log('I get called from Ship.js!');
+export default function sum(a, b) {
+    return a + b;
 }

@@ -1,3 +1,3 @@
-import errorFn from './Ship.js';
+import sum from './Ship.js';
 
-errorFn();
+console.log(sum(1 + 2));
