@@ -43,4 +43,16 @@ describe('placeShip() functionality', () => {
         expect(gameboard.valueAt(0, 1)).not.toStrictEqual(ship);
         expect(gameboard.valueAt(1, 0)).toStrictEqual(ship);
     });
+    it('placing a ship at (9, 0) with a length of 2 and an orientation of \'h\' should make the gameboard prevent the user from placing the ship', () => {
+        const gameboard = Gameboard();
+        const ship = Ship(9, 0, 2, 'h');
+        expect(() => gameboard.placeShip(ship)).toThrow('That ship cannot be placed at those coordinates!');
+        expect(gameboard.valueAt(9, 0)).not.toStrictEqual(ship);
+    });
+    it('placing a ship at (0, 9) with a length of 2 and an orientation of \'v\' should make the gameboard prevent the user from placing the ship', () => {
+        const gameboard = Gameboard();
+        const ship = Ship(0, 9, 2);
+        expect(() => gameboard.placeShip(ship)).toThrow('That ship cannot be placed at those coordinates!');
+        expect(gameboard.valueAt(0, 9)).not.toStrictEqual(ship);
+    });
 });
