@@ -55,4 +55,31 @@ describe('placeShip() functionality', () => {
         expect(() => gameboard.placeShip(ship)).toThrow('That ship cannot be placed at those coordinates!');
         expect(gameboard.valueAt(0, 9)).not.toStrictEqual(ship);
     });
+    it('placing a ship at coordinates where another ship is occupying should throw an error', () => {
+        const gameboard = Gameboard();
+        const ship1 = Ship(0, 1, 2, 'h');
+        const ship2 = Ship(1, 0, 2);
+        gameboard.placeShip(ship1);
+        expect(() => gameboard.placeShip(ship2)).toThrow();
+    });
+});
+describe('receiveAttack() functionality', () => {
+    it('calling receiveAttack() on an out-of-bounds coordinate throws an error', () => {
+        const gameboard = Gameboard();
+        expect(() => gameboard.receiveAttack(-1, 0)).toThrow();
+    });
+    it('calling receiveAttack() on a coordinate with no ship sets the gameboard at those coordinates to \'missed\'', () => {
+        const gameboard = Gameboard();
+        gameboard.receiveAttack(0, 0);
+        expect(gameboard.valueAt(0, 0)).toBe('missed');
+    });
+    it('calling receiveAttack() on a coordinate with a ship calls the hit method for the ship and sets the index to \'hit\'', () => {
+        const gameboard = Gameboard();
+        const ship = Ship(0, 0, 1);
+        gameboard.placeShip(ship);
+        expect(gameboard.valueAt(0, 0).hits).toBe(0);
+        gameboard.receiveAttack(0, 0);
+        expect(ship.hits).toBe(1);
+        expect(gameboard.valueAt(0, 0)).toBe('hit');
+    });
 });

@@ -14,7 +14,7 @@ describe('Ship factory functionality', () => {
         expect(() => Ship(0, 0, 0, 'this will not work')).toThrow();
     });
 	it("hit() increases the number of 'hits' on a Ship", () => {
-		const ship = Ship();
+		const ship = Ship(0, 0, 1);
 		ship.hit();
 		expect(ship.hits).toBe(1);
 	});
