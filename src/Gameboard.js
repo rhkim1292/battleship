@@ -51,10 +51,18 @@ const Gameboard = () => {
 			boardArr[y][x] = 'hit';
 		}
 	};
+	const allShipsSunk = () => {
+		if (shipList.length < 1) throw new Error('There are no ships on this gameboard!');
+		for (let i = 0; i < shipList.length; i++) {
+			if (!shipList[i].isSunk()) return false;
+		}
+		return true;
+	}
 	return {
 		valueAt,
 		placeShip,
 		receiveAttack,
+		allShipsSunk,
 	};
 };
 

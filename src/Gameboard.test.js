@@ -83,3 +83,14 @@ describe('receiveAttack() functionality', () => {
         expect(gameboard.valueAt(0, 0)).toBe('hit');
     });
 });
+describe('allShipsSunk() functionality', () => {
+    it('calling allShipsSunk() when there are no ships on the gameboard should throw an error', () => {
+        const gameboard = Gameboard();
+        expect(() => gameboard.allShipsSunk()).toThrow();
+    });
+    it('calling allShipsSunk() when there is at least one ship on the board that is not sunk should return false', () => {
+        const gameboard = Gameboard();
+        gameboard.placeShip(Ship(0, 0, 1));
+        expect(gameboard.allShipsSunk()).toBe(false);
+    });
+});
