@@ -93,4 +93,19 @@ describe('allShipsSunk() functionality', () => {
         gameboard.placeShip(Ship(0, 0, 1));
         expect(gameboard.allShipsSunk()).toBe(false);
     });
+    it('calling allShipsSunk() when one ship is sunk and one ship isn\'t should return false', () => {
+        const gameboard = Gameboard();
+        gameboard.placeShip(Ship(0, 0, 1));
+        gameboard.placeShip(Ship(0, 1, 1));
+        gameboard.receiveAttack(0, 0);
+        expect(gameboard.allShipsSunk()).toBe(false);
+    });
+    it('calling allShipsSunk() when all ships are sunk should return true', () => {
+        const gameboard = Gameboard();
+        gameboard.placeShip(Ship(0, 0, 1));
+        gameboard.placeShip(Ship(0, 1, 1));
+        gameboard.receiveAttack(0, 0);
+        gameboard.receiveAttack(0, 1);
+        expect(gameboard.allShipsSunk()).toBe(true);
+    });
 });
