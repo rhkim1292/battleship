@@ -1,3 +1,7 @@
-import sum from './Ship.js';
+import Player from './Player.js';
+import Gameboard from './Gameboard.js';
+import DOMHandler from './DOMHandler.js';
 
-console.log(sum(1 + 2));
+const mainGameLoop = (() => {
+    DOMHandler.testFn();
+})();
