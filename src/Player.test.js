@@ -28,3 +28,34 @@ describe('board getter functionality', () => {
         expect(() => player.board = board2).toThrow();
     })
 });
+
+describe('isCPU getter functionality', () => {
+    it('the getter for isCPU returns false when the Player factory is called without the cpu parameter', () => {
+        const board = Gameboard();
+        const player = Player('Randy', board);
+        expect(player.isCPU).toBe(false);
+    });
+    it('the getter for isCPU returns true when the Player factory is called with true passed into the cpu parameter', () => {
+        const board = Gameboard();
+        const player = Player('CPU', board, true);
+        expect(player.isCPU).toBe(true);
+    });
+});
+
+describe('startTurn() and endTurn() functionality', () => {
+    it('startTurn() should set a Player\'s isMyTurn property to true', () => {
+        const board = Gameboard();
+        const player = Player('Randy', board);
+        expect(player.isMyTurn).toBe(false);
+        player.startTurn();
+        expect(player.isMyTurn).toBe(true);
+    });
+    it('endTurn() should set a Player\'s isMyTurn property to false', () => {
+        const board = Gameboard();
+        const player = Player('Randy', board);
+        player.startTurn();
+        expect(player.isMyTurn).toBe(true);
+        player.endTurn();
+        expect(player.isMyTurn).toBe(false);
+    });
+});

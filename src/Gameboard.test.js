@@ -11,6 +11,7 @@ describe('valueAt() functionality', () => {
         expect(gameboard.valueAt(0, 0)).toStrictEqual([0, 0]);
     });
 });
+
 describe('placeShip() functionality', () => {
 	it('throws an error when trying to place a ship out of bounds', () => {
 		const gameboard = Gameboard();
@@ -63,6 +64,7 @@ describe('placeShip() functionality', () => {
         expect(() => gameboard.placeShip(ship2)).toThrow();
     });
 });
+
 describe('receiveAttack() functionality', () => {
     it('calling receiveAttack() on an out-of-bounds coordinate throws an error', () => {
         const gameboard = Gameboard();
@@ -83,6 +85,7 @@ describe('receiveAttack() functionality', () => {
         expect(gameboard.valueAt(0, 0)).toBe('hit');
     });
 });
+
 describe('allShipsSunk() functionality', () => {
     it('calling allShipsSunk() when there are no ships on the gameboard should throw an error', () => {
         const gameboard = Gameboard();
