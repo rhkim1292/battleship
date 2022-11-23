@@ -1,0 +1,36 @@
+:root {
+    --game-container-width: 800px;
+}
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 25px 25px 25px;
+}
+
+div.game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: stretch;
+    border: 2px solid black;
+}
+
+div.game-container div.p1-container,
+div.game-container div.p2-container {
+    border: 2px solid black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
