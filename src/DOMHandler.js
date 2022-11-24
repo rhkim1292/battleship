@@ -23,6 +23,8 @@ const DOMHandler = (() => {
 			for (let x = 0; x < 10; x++) {
 				let tile = document.createElement('div');
 				tile.classList.add('board-cell');
+				if (gameboard.isShip(x, y)) tile.classList.add('ship-cell');
+				else tile.classList.add('empty-cell');
 				tile.setAttribute('data-x', `${x}`);
 				tile.setAttribute('data-y', `${y}`);
 				gameboardElement.appendChild(tile);
@@ -34,6 +36,7 @@ const DOMHandler = (() => {
 
 	const renderPlayerData = (player, queryString) => {
 		const playerContainer = document.querySelector(queryString);
+		playerContainer.innerHTML = '';
 		const playerContainerColumns = document.createElement('div');
 		playerContainerColumns.classList.add('player-container-cols');
 		const playerBoardHeader = document.createElement('h2');
@@ -42,7 +45,7 @@ const DOMHandler = (() => {
 		playerContainerColumns.append(playerBoardHeader, playerGameboard);
 		playerContainer.appendChild(playerContainerColumns);
 	};
-	
+
 	return {
 		renderPlayerData,
 	};

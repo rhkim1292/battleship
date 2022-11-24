@@ -10,6 +10,7 @@ const Gameboard = () => {
 		if (!boardArr[y][x]) throw new Error(errMsg);
 	};
 	const isShip = (x, y) => {
+		if (x < 0 || x > 9 || y < 0 || y > 9) throw new Error('That index is out of bounds!');
 		return (
 			typeof boardArr[y][x] === 'object' && !Array.isArray(boardArr[y][x])
 		);
@@ -63,6 +64,7 @@ const Gameboard = () => {
 		placeShip,
 		receiveAttack,
 		allShipsSunk,
+		isShip,
 	};
 };
 

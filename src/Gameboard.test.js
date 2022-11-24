@@ -112,3 +112,22 @@ describe('allShipsSunk() functionality', () => {
         expect(gameboard.allShipsSunk()).toBe(true);
     });
 });
+
+describe('isShip() functionality', () => {
+	it('throws an error when trying to check for a ship out of bounds', () => {
+		const gameboard = Gameboard();
+		expect(() => {
+            gameboard.isShip(-1, 0);
+        }).toThrow();
+	});
+	it('placing a ship at (0, 0) with a length of 1 & calling isShip(0, 0) should return true', () => {
+        const gameboard = Gameboard();
+        const ship = Ship(0, 0, 1);
+        gameboard.placeShip(ship);
+        expect(gameboard.isShip(0, 0)).toBe(true);
+    });
+    it('calling isShip(0, 0) without placing a ship first should return false', () => {
+        const gameboard = Gameboard();
+        expect(gameboard.isShip(0, 0)).toBe(false);
+    });
+});

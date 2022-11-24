@@ -1,6 +1,7 @@
 :root {
-    --game-container-width: 800px;
+    --cell-border-width: 2px;
 }
+
 * {
     box-sizing: border-box;
 }
@@ -8,8 +9,8 @@
 html,
 body {
     margin: 0;
-    padding: 0;
     height: 100vh;
+    width: 100vw;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
 
 div.game-container {
     width: 100%;
-    height: inherit;
+    height: 80%;
     display: flex;
     justify-content: center;
     gap: 25px;
@@ -45,16 +46,29 @@ div.game-container div.player-container-cols {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 70%;
 }
 
 .gameboard {
-    aspect-ratio: 1 / 1;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    /* aspect-ratio: 1 / 1; */
+    border: 1px solid rgb(205, 205, 205);
 }
 
 .gameboard .board-cell {
     width: 10%;
     height: 10%;
-    border: 2px solid black;
+    border: 1px solid rgb(205, 205, 205);
+    /* aspect-ratio: 1 / 1; */
+}
+
+.gameboard .empty-cell {
+    background-color: rgb(78, 178, 255);
+}
+
+.gameboard .ship-cell {
+    background-color: hsla(206, 0%, 50%, 1);
 }
