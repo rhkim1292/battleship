@@ -43,11 +43,9 @@ const Gameboard = () => {
 	};
 	const receiveAttack = (x, y) => {
 		checkCoordinates(x, y, 'Coordinate is out of bounds!');
+		if (boardArr[y][x] === 'missed' || boardArr[y][x] === 'hit') return;
 		if (Array.isArray(boardArr[y][x])) boardArr[y][x] = 'missed';
-		else if (
-			typeof boardArr[y][x] === 'object' &&
-			!Array.isArray(boardArr[y][x])
-		) {
+		else if (isShip(x, y)) {
 			boardArr[y][x].hit();
 			boardArr[y][x] = 'hit';
 		}

@@ -20,6 +20,11 @@ body {
     padding: 0px 25px 25px 25px;
 }
 
+.text-announcer {
+    margin: 0;
+    padding: 0;
+}
+
 div.game-container {
     width: 100%;
     height: 80%;
@@ -71,4 +76,12 @@ div.game-container div.player-container-cols {
 
 .gameboard .ship-cell {
     background-color: hsla(206, 0%, 50%, 1);
+}
+
+.gameboard .missed-cell {
+    background-color:hsl(0, 0%, 79%);
+}
+
+.gameboard .hit-cell {
+    background-color:hsl(0, 100%, 66%);
 }

@@ -84,6 +84,13 @@ describe('receiveAttack() functionality', () => {
         expect(ship.hits).toBe(1);
         expect(gameboard.valueAt(0, 0)).toBe('hit');
     });
+    it('calling receiveAttack() on a coordinate that has already been attacked should return undefined', () => {
+        const gameboard = Gameboard();
+        const ship = Ship(0, 0, 1);
+        gameboard.placeShip(ship);
+        gameboard.receiveAttack(0, 0);
+        expect(gameboard.receiveAttack(0, 0)).toBeUndefined();
+    });
 });
 
 describe('allShipsSunk() functionality', () => {
