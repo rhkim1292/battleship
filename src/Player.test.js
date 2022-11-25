@@ -59,3 +59,21 @@ describe('startTurn() and endTurn() functionality', () => {
         expect(player.isMyTurn).toBe(false);
     });
 });
+
+describe('calculateDecision() functionality', () => {
+    it('calculateDecision() should return an array with two elements in it', () => {
+        const board = Gameboard();
+        const player = Player('Randy', board);
+        const decision = player.calculateDecision();
+        expect(decision.length).toBe(2);
+    });
+    it('The first and second elements of the array returned by calculateDecision() should be a random number between 0 and 9', () => {
+        const board = Gameboard();
+        const player = Player('Randy', board);
+        const decision = player.calculateDecision();
+        expect(decision[0]).toBeGreaterThanOrEqual(0);
+        expect(decision[0]).toBeLessThan(10);
+        expect(decision[1]).toBeGreaterThanOrEqual(0);
+        expect(decision[1]).toBeLessThan(10);
+    });
+});

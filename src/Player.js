@@ -11,6 +11,12 @@ const Player = (name, gameboard, cpu= false) => {
     const endTurn = () => {
         isMyTurn = false;
     };
+    const calculateDecision = () => {
+        const decision = [];
+        decision.push(Math.floor(Math.random() * 10));
+        decision.push(Math.floor(Math.random() * 10));
+        return decision;
+    };
     return {
         get name() {
             return playerName;
@@ -26,6 +32,7 @@ const Player = (name, gameboard, cpu= false) => {
         },
         startTurn,
         endTurn,
+        calculateDecision,
     }
 };
 
