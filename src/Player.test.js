@@ -60,17 +60,49 @@ describe('startTurn() and endTurn() functionality', () => {
     });
 });
 
+describe('setOpponent() functionality', () => {
+    it('calling player1\'s setOpponent method with player2 passed in should make player1\'s opponent property have the same name as player2', () => {
+        const board1 = Gameboard();
+        const player1 = Player('Randy', board1);
+        const board2 = Gameboard();
+        const player2 = Player('CPU', board2, true);
+
+        player1.setOpponent(player2);
+        expect(player1.opponent.name).toBe('CPU');
+    });
+    it('calling player1\'s setOpponent method with player2 passed in should make player1\'s opponent property have the same board as player2', () => {
+        const board1 = Gameboard();
+        const player1 = Player('Randy', board1);
+        const board2 = Gameboard();
+        const player2 = Player('CPU', board2, true);
+
+        player1.setOpponent(player2);
+        expect(player1.opponent.board).toStrictEqual(board2);
+    });
+});
+
 describe('calculateDecision() functionality', () => {
-    it('calculateDecision() should return an array with two elements in it', () => {
+    it('calculateDecision() should throw an error if called before setting an opponent for the player', () => {
         const board = Gameboard();
         const player = Player('Randy', board);
-        const decision = player.calculateDecision();
+        expect(() => player.calculateDecision()).toThrow('Set opponent first!');
+    });
+    it('calculateDecision() should return an array with two elements in it', () => {
+        const board1 = Gameboard();
+        const player1 = Player('Randy', board1);
+        const board2 = Gameboard();
+        const player2 = Player('CPU', board2, true);
+        player2.setOpponent(player1);
+        const decision = player2.calculateDecision();
         expect(decision.length).toBe(2);
     });
     it('The first and second elements of the array returned by calculateDecision() should be a random number between 0 and 9', () => {
-        const board = Gameboard();
-        const player = Player('Randy', board);
-        const decision = player.calculateDecision();
+        const board1 = Gameboard();
+        const player1 = Player('Randy', board1);
+        const board2 = Gameboard();
+        const player2 = Player('CPU', board2, true);
+        player2.setOpponent(player1);
+        const decision = player2.calculateDecision();
         expect(decision[0]).toBeGreaterThanOrEqual(0);
         expect(decision[0]).toBeLessThan(10);
         expect(decision[1]).toBeGreaterThanOrEqual(0);
