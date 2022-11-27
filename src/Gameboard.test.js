@@ -16,13 +16,13 @@ describe('placeShip() functionality', () => {
 	it('throws an error when trying to place a ship out of bounds', () => {
 		const gameboard = Gameboard();
 		expect(() => {
-            const ship = Ship(-1, 0, 1);
+            const ship = Ship('ship', -1, 0, 1);
             gameboard.placeShip(ship)
         }).toThrow();
 	});
 	it('placing a ship at (0, 0) with a length of 1 should make the gameboard return a reference to the ship only at (0, 0)', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 1);
+        const ship = Ship('ship', 0, 0, 1);
         gameboard.placeShip(ship);
         expect(gameboard.valueAt(0, 0)).toStrictEqual(ship);
         expect(gameboard.valueAt(0, 1)).not.toStrictEqual(ship);
@@ -30,7 +30,7 @@ describe('placeShip() functionality', () => {
     });
     it('placing a ship at (0, 0) with a length of 2 and an orientation of \'v\' should make the gameboard return a reference to the ship at both (0, 0) and (0, 1)', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 2);
+        const ship = Ship('ship', 0, 0, 2);
         gameboard.placeShip(ship);
         expect(gameboard.valueAt(0, 0)).toStrictEqual(ship);
         expect(gameboard.valueAt(0, 1)).toStrictEqual(ship);
@@ -38,7 +38,7 @@ describe('placeShip() functionality', () => {
     });
     it('placing a ship at (0, 0) with a length of 2 and an orientation of \'h\' should make the gameboard return a reference to the ship at both (0, 0) and (1, 0)', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 2, 'h');
+        const ship = Ship('ship', 0, 0, 2, 'h');
         gameboard.placeShip(ship);
         expect(gameboard.valueAt(0, 0)).toStrictEqual(ship);
         expect(gameboard.valueAt(0, 1)).not.toStrictEqual(ship);
@@ -46,20 +46,20 @@ describe('placeShip() functionality', () => {
     });
     it('placing a ship at (9, 0) with a length of 2 and an orientation of \'h\' should make the gameboard prevent the user from placing the ship', () => {
         const gameboard = Gameboard();
-        const ship = Ship(9, 0, 2, 'h');
+        const ship = Ship('ship', 9, 0, 2, 'h');
         expect(() => gameboard.placeShip(ship)).toThrow('That ship cannot be placed at those coordinates!');
         expect(gameboard.valueAt(9, 0)).not.toStrictEqual(ship);
     });
     it('placing a ship at (0, 9) with a length of 2 and an orientation of \'v\' should make the gameboard prevent the user from placing the ship', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 9, 2);
+        const ship = Ship('ship', 0, 9, 2);
         expect(() => gameboard.placeShip(ship)).toThrow('That ship cannot be placed at those coordinates!');
         expect(gameboard.valueAt(0, 9)).not.toStrictEqual(ship);
     });
     it('placing a ship at coordinates where another ship is occupying should throw an error', () => {
         const gameboard = Gameboard();
-        const ship1 = Ship(0, 1, 2, 'h');
-        const ship2 = Ship(1, 0, 2);
+        const ship1 = Ship('ship', 0, 1, 2, 'h');
+        const ship2 = Ship('ship', 1, 0, 2);
         gameboard.placeShip(ship1);
         expect(() => gameboard.placeShip(ship2)).toThrow();
     });
@@ -77,7 +77,7 @@ describe('receiveAttack() functionality', () => {
     });
     it('calling receiveAttack() on a coordinate with a ship calls the hit method for the ship and sets the index to \'hit\'', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 1);
+        const ship = Ship('ship', 0, 0, 1);
         gameboard.placeShip(ship);
         expect(gameboard.valueAt(0, 0).hits).toBe(0);
         gameboard.receiveAttack(0, 0);
@@ -86,7 +86,7 @@ describe('receiveAttack() functionality', () => {
     });
     it('calling receiveAttack() on a coordinate that has already been attacked should return undefined', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 1);
+        const ship = Ship('ship', 0, 0, 1);
         gameboard.placeShip(ship);
         gameboard.receiveAttack(0, 0);
         expect(gameboard.receiveAttack(0, 0)).toBeUndefined();
@@ -100,20 +100,20 @@ describe('allShipsSunk() functionality', () => {
     });
     it('calling allShipsSunk() when there is at least one ship on the board that is not sunk should return false', () => {
         const gameboard = Gameboard();
-        gameboard.placeShip(Ship(0, 0, 1));
+        gameboard.placeShip(Ship('ship', 0, 0, 1));
         expect(gameboard.allShipsSunk()).toBe(false);
     });
     it('calling allShipsSunk() when one ship is sunk and one ship isn\'t should return false', () => {
         const gameboard = Gameboard();
-        gameboard.placeShip(Ship(0, 0, 1));
-        gameboard.placeShip(Ship(0, 1, 1));
+        gameboard.placeShip(Ship('ship', 0, 0, 1));
+        gameboard.placeShip(Ship('ship', 0, 1, 1));
         gameboard.receiveAttack(0, 0);
         expect(gameboard.allShipsSunk()).toBe(false);
     });
     it('calling allShipsSunk() when all ships are sunk should return true', () => {
         const gameboard = Gameboard();
-        gameboard.placeShip(Ship(0, 0, 1));
-        gameboard.placeShip(Ship(0, 1, 1));
+        gameboard.placeShip(Ship('ship', 0, 0, 1));
+        gameboard.placeShip(Ship('ship', 0, 1, 1));
         gameboard.receiveAttack(0, 0);
         gameboard.receiveAttack(0, 1);
         expect(gameboard.allShipsSunk()).toBe(true);
@@ -129,7 +129,7 @@ describe('isShip() functionality', () => {
 	});
 	it('placing a ship at (0, 0) with a length of 1 & calling isShip(0, 0) should return true', () => {
         const gameboard = Gameboard();
-        const ship = Ship(0, 0, 1);
+        const ship = Ship('ship', 0, 0, 1);
         gameboard.placeShip(ship);
         expect(gameboard.isShip(0, 0)).toBe(true);
     });

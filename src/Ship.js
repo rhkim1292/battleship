@@ -1,4 +1,5 @@
-const Ship = (x, y, len, orientation = 'v') => {
+const Ship = (name, x, y, len, orientation = 'v') => {
+	if (typeof name !== 'string') throw new Error('Ship name must be a string!');
 	if (x < 0)
 		throw new Error(
 			'A positive integer must be passed into the x argument!'
@@ -15,6 +16,7 @@ const Ship = (x, y, len, orientation = 'v') => {
 		throw new Error(
 			"'h' or 'v' must be passed into the orientation argument! Leaving it empty will set it to 'v' by default."
 		);
+	const shipName = name;
 	const shipLength = len;
 	const coordArr = [];
 
@@ -35,6 +37,9 @@ const Ship = (x, y, len, orientation = 'v') => {
 	};
 
 	return {
+		get name() {
+			return shipName;
+		},
 		get hits() {
 			return hits;
 		},
