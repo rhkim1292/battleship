@@ -54,6 +54,16 @@ div.game-container div.player-container-cols {
     width: 70%;
 }
 
+div.game-container div.player-container-cols h2 {
+    position: relative;
+}
+
+div.game-container div.player-container-cols h2 button.change-orientation {
+    position: absolute;
+    right: -141px;
+    top: 3px;
+}
+
 .gameboard {
     display: flex;
     flex-wrap: wrap;
@@ -76,6 +86,10 @@ div.game-container div.player-container-cols {
 
 .gameboard .ship-cell {
     background-color: hsla(206, 0%, 50%, 1);
+}
+
+.gameboard .hover-ship-cell {
+    background-color: hsla(206, 28%, 65%, 1);
 }
 
 .gameboard .missed-cell {
