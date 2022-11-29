@@ -1,5 +1,6 @@
 import './style.css';
 import Ship from './Ship.js';
+import mainGameLoop from './index.js';
 
 const DOMHandler = (() => {
 	const title = document.createElement('h1');
@@ -123,6 +124,7 @@ const DOMHandler = (() => {
 			p2Container.classList.add('p2-container');
 			gameContainer.append(p1Container, p2Container);
 			shipOrientationVertical = true;
+			mainGameLoop.beginGame();
 		});
 	};
 
