@@ -104,7 +104,12 @@ const DOMHandler = (() => {
 		playerGameboardElement.addEventListener('click', (e) => {
 			const clickedCellX = Number(e.target.dataset.x);
 			const clickedCellY = Number(e.target.dataset.y);
-			player.board.placeShip(Ship('Patrol Boat', clickedCellX, clickedCellY, 2, shipOrientationVertical ? 'v' : 'h'));
+			try {
+				player.board.placeShip(Ship('Patrol Boat', clickedCellX, clickedCellY, 2, shipOrientationVertical ? 'v' : 'h'));
+			} catch (e) {
+				displayAnnouncement('The Patrol Boat cannot be placed there! Choose a different cell!');
+				return;
+			}
 			renderGameboard(playerGameboardElement, player.board);
 			// Remove all event listeners by cloning the element and replacing the original with the clone
 			const clone = playerGameboardElement.cloneNode(true);
@@ -133,7 +138,12 @@ const DOMHandler = (() => {
 		playerGameboardElement.addEventListener('click', (e) => {
 			const clickedCellX = Number(e.target.dataset.x);
 			const clickedCellY = Number(e.target.dataset.y);
-			player.board.placeShip(Ship('Submarine', clickedCellX, clickedCellY, 3, shipOrientationVertical ? 'v' : 'h'));
+			try {
+				player.board.placeShip(Ship('Submarine', clickedCellX, clickedCellY, 3, shipOrientationVertical ? 'v' : 'h'));
+			} catch (e) {
+				displayAnnouncement('The Submarine cannot be placed there! Choose a different cell!');
+				return;
+			}
 			renderGameboard(playerGameboardElement, player.board);
 			// Remove all event listeners by cloning the element and replacing the the original with the clone
 			const clone = playerGameboardElement.cloneNode(true);
@@ -155,7 +165,12 @@ const DOMHandler = (() => {
 		playerGameboardElement.addEventListener('click', (e) => {
 			const clickedCellX = Number(e.target.dataset.x);
 			const clickedCellY = Number(e.target.dataset.y);
-			player.board.placeShip(Ship('Destroyer', clickedCellX, clickedCellY, 3, shipOrientationVertical ? 'v' : 'h'));
+			try {
+				player.board.placeShip(Ship('Destroyer', clickedCellX, clickedCellY, 3, shipOrientationVertical ? 'v' : 'h'));
+			} catch (e) {
+				displayAnnouncement('The Destroyer cannot be placed there! Choose a different cell!');
+				return;
+			}
 			renderGameboard(playerGameboardElement, player.board);
 			// Remove all event listeners by cloning the element and replacing the the original with the clone
 			const clone = playerGameboardElement.cloneNode(true);
@@ -176,7 +191,12 @@ const DOMHandler = (() => {
 		playerGameboardElement.addEventListener('click', (e) => {
 			const clickedCellX = Number(e.target.dataset.x);
 			const clickedCellY = Number(e.target.dataset.y);
-			player.board.placeShip(Ship('Battleship', clickedCellX, clickedCellY, 4, shipOrientationVertical ? 'v' : 'h'));
+			try {
+				player.board.placeShip(Ship('Battleship', clickedCellX, clickedCellY, 4, shipOrientationVertical ? 'v' : 'h'));
+			} catch (e) {
+				displayAnnouncement('The Battleship cannot be placed there! Choose a different cell!');
+				return;
+			}
 			renderGameboard(playerGameboardElement, player.board);
 			// Remove all event listeners by cloning the element and replacing the the original with the clone
 			const clone = playerGameboardElement.cloneNode(true);
@@ -198,7 +218,12 @@ const DOMHandler = (() => {
 		playerGameboardElement.addEventListener('click', (e) => {
 			const clickedCellX = Number(e.target.dataset.x);
 			const clickedCellY = Number(e.target.dataset.y);
-			player.board.placeShip(Ship('Carrier', clickedCellX, clickedCellY, 5, shipOrientationVertical ? 'v' : 'h'));
+			try {
+				player.board.placeShip(Ship('Carrier', clickedCellX, clickedCellY, 5, shipOrientationVertical ? 'v' : 'h'));
+			} catch (e) {
+				displayAnnouncement('The Carrier cannot be placed there! Choose a different cell!');
+				return;
+			}
 			renderGameboard(playerGameboardElement, player.board);
 			// Remove all event listeners by cloning the element and replacing the the original with the clone
 			const clone = playerGameboardElement.cloneNode(true);
