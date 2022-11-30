@@ -13,13 +13,16 @@ const mainGameLoop = (() => {
 			p2.endTurn();
 		}
 	};
-
+	const resetGameBtn = document.querySelector('button#resetGameBtn');
+	resetGameBtn.addEventListener('click', (e) => {
+		resetGame();
+	});
 	let gameEnd = false;
-	const p1Gameboard = Gameboard();
-	const p1 = Player(prompt('Enter your name.'), p1Gameboard);
+	let p1Gameboard = Gameboard();
+	let p1 = Player(prompt('Enter your name.'), p1Gameboard);
 	DOMHandler.renderShipPlacer(p1);
-	const p2Gameboard = Gameboard();
-	const p2 = Player('CPU', p2Gameboard);
+	let p2Gameboard = Gameboard();
+	let p2 = Player('CPU', p2Gameboard);
 	const shipArr = [];
 	shipArr.push(['Carrier', 5]);
 	shipArr.push(['BattleShip', 4]);
@@ -27,6 +30,15 @@ const mainGameLoop = (() => {
 	shipArr.push(['Submarine', 3]);
 	shipArr.push(['Patrol Boat', 2]);
 	p2Gameboard.placeShipsRandomly(shipArr);
+	const resetGame = () => {
+		gameEnd = false;
+		p1Gameboard = Gameboard();
+		p1 = Player(p1.name, p1Gameboard);
+		DOMHandler.renderShipPlacer(p1);
+		p2Gameboard = Gameboard();
+		p2 = Player('CPU', p2Gameboard);
+		p2Gameboard.placeShipsRandomly(shipArr);
+	};
 	const beginGame = () => {
 		DOMHandler.renderPlayerData(p1, 'div.p1-container');
 		DOMHandler.renderPlayerData(p2, 'div.p2-container', true);

@@ -5,6 +5,10 @@ import mainGameLoop from './index.js';
 const DOMHandler = (() => {
 	const title = document.createElement('h1');
 	title.textContent = 'Battleship!';
+	const resetGameBtn = document.createElement('button');
+	resetGameBtn.textContent ='Reset Game';
+	resetGameBtn.setAttribute('id', 'resetGameBtn');
+	title.appendChild(resetGameBtn);
 	const textAnnouncer = document.createElement('h2');
 	textAnnouncer.classList.add('text-announcer');
 	const gameContainer = document.createElement('div');

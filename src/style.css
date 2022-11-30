@@ -20,6 +20,15 @@ body {
     padding: 0px 25px 25px 25px;
 }
 
+h1 {
+    position: relative;
+}
+
+h1 button#resetGameBtn {
+    position: absolute;
+    left: 13em;
+}
+
 .text-announcer {
     margin: 0;
     padding: 0;
@@ -60,8 +69,8 @@ div.game-container div.player-container-cols h2 {
 
 div.game-container div.player-container-cols h2 button.change-orientation {
     position: absolute;
-    right: -141px;
-    top: 3px;
+    left: 11em;
+    top: -.25em;
 }
 
 .gameboard {
