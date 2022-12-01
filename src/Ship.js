@@ -29,9 +29,11 @@ const Ship = (name, x, y, len, orientation = 'v') => {
 	const hit = () => {
 		hits++;
 	};
+
 	const isSunk = () => {
 		return hits === shipLength;
 	};
+	
 	const getCoordinates = () => {
 		return coordArr;
 	};

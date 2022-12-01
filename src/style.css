@@ -108,3 +108,7 @@ div.game-container div.player-container-cols h2 button.change-orientation {
 .gameboard .hit-cell {
     background-color:hsl(0, 100%, 66%);
 }
+
+.gameboard .sunk-cell {
+    background-color:hsl(0, 100%, 20%);
+}

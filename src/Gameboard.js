@@ -4,11 +4,13 @@ const Gameboard = () => {
 	const boardArr = Array.from({ length: 10 }, (e, idxY) =>
 		Array.from({ length: 10 }, (e, idxX) => [idxX, idxY])
 	);
+
 	const shipList = [];
 	const checkCoordinates = (x, y, errMsg) => {
 		if (!boardArr[y]) throw new Error(errMsg);
 		if (!boardArr[y][x]) throw new Error(errMsg);
 	};
+
 	const isShip = (x, y) => {
 		if (x < 0 || x > 9 || y < 0 || y > 9)
 			throw new Error('That index is out of bounds!');
@@ -16,9 +18,11 @@ const Gameboard = () => {
 			typeof boardArr[y][x] === 'object' && !Array.isArray(boardArr[y][x])
 		);
 	};
+
 	const valueAt = (x, y) => {
 		return boardArr[y][x];
 	};
+
 	const placeShip = (ship) => {
 		const shipCoordinates = ship.getCoordinates();
 
@@ -71,6 +75,7 @@ const Gameboard = () => {
 			boardArr[y][x] = 'hit';
 		}
 	};
+
 	const allShipsSunk = () => {
 		if (shipList.length < 1)
 			throw new Error('There are no ships on this gameboard!');
@@ -79,6 +84,7 @@ const Gameboard = () => {
 		}
 		return true;
 	};
+	
 	return {
 		valueAt,
 		placeShip,
